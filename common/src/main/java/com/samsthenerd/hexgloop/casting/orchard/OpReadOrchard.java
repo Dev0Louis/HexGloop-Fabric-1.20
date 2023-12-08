@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import at.petrak.hexcasting.api.spell.ConstMediaAction;
-import at.petrak.hexcasting.api.spell.OperationResult;
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
-import at.petrak.hexcasting.api.spell.casting.eval.SpellContinuation;
-import at.petrak.hexcasting.api.spell.iota.DoubleIota;
-import at.petrak.hexcasting.api.spell.iota.Iota;
-import at.petrak.hexcasting.api.spell.iota.ListIota;
+import at.petrak.hexcasting.api.casting.ConstMediaAction;
+import at.petrak.hexcasting.api.casting.OperationResult;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.eval.SpellContinuation;
+import at.petrak.hexcasting.api.casting.iota.DoubleIota;
+import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.ListIota;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 

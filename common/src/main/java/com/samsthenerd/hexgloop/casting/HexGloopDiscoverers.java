@@ -11,9 +11,9 @@ import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.IItemProviderLo
 import at.petrak.hexcasting.api.addldata.ADMediaHolder;
 import at.petrak.hexcasting.api.block.circle.BlockEntityAbstractImpetus;
 import at.petrak.hexcasting.api.misc.DiscoveryHandlers;
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
-import at.petrak.hexcasting.api.spell.casting.CastingHarness;
-import at.petrak.hexcasting.api.spell.casting.SpellCircleContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingHarness;
+import at.petrak.hexcasting.api.casting.casting.SpellCircleContext;
 import at.petrak.hexcasting.common.items.ItemLens;
 import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import net.minecraft.entity.player.PlayerEntity;

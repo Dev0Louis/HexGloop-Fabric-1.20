@@ -34,7 +34,7 @@ public class ItemSimpleMediaProvider extends Item{
         return grabFromInventory;
     }
 
-    public int getMediaAmount(){
+    public long getMediaAmount(){
         return mediaAmt;
     }
 
@@ -66,12 +66,12 @@ public class ItemSimpleMediaProvider extends Item{
         return false;
     }
 
-    public int withdrawMedia(ItemStack stack, int cost, boolean simulate) {
+    public long withdrawMedia(ItemStack stack, long cost, boolean simulate) {
         int mediaHere = getMedia(stack);
         if (cost < 0) {
             cost = mediaHere;
         }
-        int realCost = Math.min(cost, mediaHere);
+        long realCost = Math.min(cost, mediaHere);
         if (!simulate) {
             stack.decrement((int) Math.ceil(realCost / (double)mediaAmt));
         }

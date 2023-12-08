@@ -2,7 +2,7 @@ package com.samsthenerd.hexgloop.items;
 
 import com.samsthenerd.hexgloop.casting.ContextModificationHandlers.Modification;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.item.Item;
 

@@ -1,6 +1,6 @@
 package com.samsthenerd.hexgloop.blocks;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.util.math.BlockPos;
 

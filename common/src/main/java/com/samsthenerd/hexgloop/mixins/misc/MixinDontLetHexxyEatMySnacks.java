@@ -7,7 +7,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.samsthenerd.hexgloop.items.ItemSimpleMediaProvider;
 
-import at.petrak.hexcasting.api.spell.casting.CastingHarness;
+import at.petrak.hexcasting.api.casting.casting.CastingHarness;
 import net.minecraft.item.ItemStack;
 
 @Mixin(CastingHarness.class)

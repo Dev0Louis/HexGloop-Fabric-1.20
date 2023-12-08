@@ -8,7 +8,7 @@ import java.util.function.BiFunction;
 import com.samsthenerd.hexgloop.blocks.BlockSentinelBed;
 import com.samsthenerd.hexgloop.items.ItemCopingSaw;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import net.minecraft.data.client.BlockStateVariantMap.TriFunction;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.Vec3d;

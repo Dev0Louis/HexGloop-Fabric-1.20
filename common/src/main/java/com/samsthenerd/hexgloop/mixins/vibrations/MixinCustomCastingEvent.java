@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import com.samsthenerd.hexgloop.misc.HexGloopGameEvents;
 
-import at.petrak.hexcasting.api.spell.casting.CastingHarness;
+import at.petrak.hexcasting.api.casting.casting.CastingHarness;
 import net.minecraft.world.event.GameEvent;
 
 @Mixin(CastingHarness.class)

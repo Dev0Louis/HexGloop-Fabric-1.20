@@ -8,11 +8,11 @@ import com.samsthenerd.hexgloop.mixins.lociathome.MixinExposeHarnessStuff;
 
 import at.petrak.hexcasting.api.addldata.ADMediaHolder;
 import at.petrak.hexcasting.api.block.circle.BlockEntityAbstractImpetus;
-import at.petrak.hexcasting.api.spell.casting.CastingHarness;
-import at.petrak.hexcasting.api.spell.casting.ResolvedPatternType;
-import at.petrak.hexcasting.api.spell.casting.eval.FunctionalData;
-import at.petrak.hexcasting.api.spell.iota.Iota;
-import at.petrak.hexcasting.api.spell.iota.PatternIota;
+import at.petrak.hexcasting.api.casting.casting.CastingHarness;
+import at.petrak.hexcasting.api.casting.casting.ResolvedPatternType;
+import at.petrak.hexcasting.api.casting.casting.eval.FunctionalData;
+import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.PatternIota;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 

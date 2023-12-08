@@ -7,8 +7,8 @@ import org.spongepowered.asm.mixin.Mixin;
 
 import com.samsthenerd.hexgloop.casting.gloopifact.ICADHarnessStorage;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
-import at.petrak.hexcasting.api.spell.casting.CastingHarness;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingHarness;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 @Mixin(ServerPlayerEntity.class)

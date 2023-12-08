@@ -2,7 +2,7 @@ package com.samsthenerd.hexgloop.blocks;
 
 import com.samsthenerd.hexgloop.HexGloop;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import net.minecraft.block.Block;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.util.math.BlockPos;

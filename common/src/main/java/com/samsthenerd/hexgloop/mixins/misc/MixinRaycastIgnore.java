@@ -9,8 +9,8 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.samsthenerd.hexgloop.blocks.ICantBeRaycasted;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
-import at.petrak.hexcasting.api.spell.iota.Iota;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.common.casting.operators.OpBlockAxisRaycast;
 import at.petrak.hexcasting.common.casting.operators.OpBlockRaycast;
 import net.minecraft.server.world.ServerWorld;

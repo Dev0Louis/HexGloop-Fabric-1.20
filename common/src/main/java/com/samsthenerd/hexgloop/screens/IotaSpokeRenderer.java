@@ -46,7 +46,7 @@ public class IotaSpokeRenderer extends SpokeRenderer{
     public int getColorOutline(int vI){
         Vec3d colorPos = new Vec3d(vI + iotaProvider.getRNG().nextFloat()*0.5, 
             iotaIndex + iotaProvider.getRNG().nextFloat()*0.5, vI + iotaProvider.getRNG().nextFloat()*0.5).multiply(0.8);
-        int color = iotaProvider.getColorizer().getColor((float) currentTime, colorPos);
+        int color = iotaProvider.getPigment().getColor((float) currentTime, colorPos);
         return color;
     }
 

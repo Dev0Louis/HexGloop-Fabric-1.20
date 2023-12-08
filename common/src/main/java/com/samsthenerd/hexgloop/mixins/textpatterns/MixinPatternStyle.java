@@ -21,10 +21,10 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.samsthenerd.hexgloop.screens.PatternStyle;
 
 import at.petrak.hexcasting.api.PatternRegistry;
-import at.petrak.hexcasting.api.spell.Action;
-import at.petrak.hexcasting.api.spell.iota.PatternIota;
-import at.petrak.hexcasting.api.spell.math.HexDir;
-import at.petrak.hexcasting.api.spell.math.HexPattern;
+import at.petrak.hexcasting.api.casting.Action;
+import at.petrak.hexcasting.api.casting.iota.PatternIota;
+import at.petrak.hexcasting.api.casting.math.HexDir;
+import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.client.RenderLib;
 import at.petrak.hexcasting.common.lib.HexItems;
 import kotlin.Pair;

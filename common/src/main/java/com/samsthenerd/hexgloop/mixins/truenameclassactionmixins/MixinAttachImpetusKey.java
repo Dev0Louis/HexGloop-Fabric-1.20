@@ -12,7 +12,7 @@ import com.samsthenerd.hexgloop.casting.truenameclassaction.ISetImpetusKey;
 import com.samsthenerd.hexgloop.items.ItemCastersCoin;
 
 import at.petrak.hexcasting.api.addldata.ADIotaHolder;
-import at.petrak.hexcasting.api.spell.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.common.blocks.circles.impetuses.BlockStoredPlayerImpetus;
 import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import net.minecraft.block.BlockState;
@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 
 @Mixin(BlockStoredPlayerImpetus.class)
 public class MixinAttachImpetusKey {
-    @Inject(method="onUse(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ActionResult;", 
+    @Inject(method="onUse(Lnet/minecraft/block/BlockState;Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/PlayerEntity;Lnet/minecraft/util/Hand;Lnet/minecraft/util/hit/BlockHitResult;)Lnet/minecraft/util/ActionResult;",
         at=@At(value="INVOKE", target="at/petrak/hexcasting/common/blocks/entity/BlockEntityStoredPlayerImpetus.setPlayer (Lcom/mojang/authlib/GameProfile;Ljava/util/UUID;)V"),
         cancellable = true)
     public void AttachImpetusKey(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit, CallbackInfoReturnable<ActionResult> cir){

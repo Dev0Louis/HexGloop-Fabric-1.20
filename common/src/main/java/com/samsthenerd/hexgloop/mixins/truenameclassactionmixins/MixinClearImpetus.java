@@ -63,5 +63,4 @@ public class MixinClearImpetus implements ISetImpetusKey {
             keyUuid = nbt.getUuid(KEY_UUID_KEY);
         }
     }
-
 }

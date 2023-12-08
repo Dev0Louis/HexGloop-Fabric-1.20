@@ -14,9 +14,6 @@ import net.minecraft.item.ItemStack;
 @Mixin(LivingEntity.class)
 public class MixinMaintainUsingCorrectItemFabric {
 
-    @Shadow
-    protected ItemStack activeItemStack;
-
     @WrapOperation(method="tickActiveItemStack()V",
     at=@At(value="INVOKE", target="net/minecraft/item/ItemStack.areItemsEqual (Lnet/minecraft/item/ItemStack;Lnet/minecraft/item/ItemStack;)Z"))
     private boolean makeItemsEqualInTickActive(ItemStack left, ItemStack right, Operation<Boolean> original){

@@ -64,7 +64,8 @@ dependencies {
 	// modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${project.rei_version}"
 
 	// for HexCasting
-	modImplementation "at.petra-k.hexcasting:hexcasting-fabric-${project.minecraft_version}:${project.hexcastingVersion}"
+	//modImplementation "at.petra-k.hexcasting:hexcasting-fabric-${project.minecraft_version}:${project.hexcastingVersion}
+    modImplementation files('../libs/hexcasting-fabric-1.20.1-0.11.1-7-pre-1.jar')
 
     modImplementation "maven.modrinth:wnboi:${wnboiVersion}-fabric"
     // modRuntimeOnly "maven.modrinth:wnboi:${wnboiVersion}-fabric"
@@ -72,16 +73,17 @@ dependencies {
     modRuntimeOnly "maven.modrinth:hexal:${hexalVersion}"
     modRuntimeOnly "maven.modrinth:moreiotas:${moreIotasVersion}"
 
-    modImplementation "software.bernie.geckolib:geckolib-fabric-1.19:${geckolibVersion}"
-    modRuntimeOnly "software.bernie.geckolib:geckolib-fabric-1.19:${geckolibVersion}"
+    modImplementation "software.bernie.geckolib:geckolib-fabric-1.20.1:${geckolibVersion}"
+    modRuntimeOnly "software.bernie.geckolib:geckolib-fabric-1.20.1:${geckolibVersion}"
 
 	// Hex Casting Dependencies
-	modImplementation "at.petra-k.paucal:paucal-fabric-${minecraft_version}:${paucalVersion}"
+	modImplementation "at.petra-k.paucal:paucal-fabric-1.19.2:${paucalVersion}"
 	modImplementation "vazkii.patchouli:Patchouli:${minecraft_version}-${patchouliVersion}-FABRIC"
 
     modImplementation "dev.emi:trinkets:${trinkets_version}"
-
-    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${cardinalComponentsVersion}"
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-base:${cardinalComponentsVersion}"
+    modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-level:${cardinalComponentsVersion}"
+    //modImplementation "dev.onyxstudios.cardinal-components-api:cardinal-components-api:${cardinalComponentsVersion}"
 
     modImplementation "com.jamieswhiteshirt:reach-entity-attributes:${entityReachVersion}"
     include "com.jamieswhiteshirt:reach-entity-attributes:${entityReachVersion}"
@@ -90,7 +92,7 @@ dependencies {
     include "io.github.tropheusj:serialization-hooks:${serializationHooksVersion}"
 
 	modImplementation "maven.modrinth:lithium:${lithiumVersion}"
-    modRuntimeOnly "maven.modrinth:phosphor:${phosphorVersion}"
+    //modRuntimeOnly "maven.modrinth:phosphor:${phosphorVersion}"
 	modImplementation "maven.modrinth:sodium:${sodiumVersion}"
 
     modRuntimeOnly "maven.modrinth:tooltipfix:${tooltipfixVersion}"

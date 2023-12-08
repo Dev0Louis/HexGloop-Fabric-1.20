@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Consumer;
 
+import at.petrak.hexcasting.api.casting.iota.IotaType;
 import com.mojang.datafixers.util.Pair;
 import com.samsthenerd.hexgloop.blockentities.BERConjuredRedstone;
 import com.samsthenerd.hexgloop.blockentities.BERHexChest;
@@ -29,11 +30,11 @@ import com.samsthenerd.hexgloop.utils.GloopUtils;
 import at.petrak.hexcasting.api.addldata.ADIotaHolder;
 import at.petrak.hexcasting.api.client.ScryingLensOverlayRegistry;
 import at.petrak.hexcasting.api.item.IotaHolderItem;
-import at.petrak.hexcasting.api.misc.FrozenColorizer;
+import at.petrak.hexcasting.api.pigment.FrozenPigment;
 import at.petrak.hexcasting.api.misc.MediaConstants;
-import at.petrak.hexcasting.api.spell.iota.PatternIota;
-import at.petrak.hexcasting.api.spell.math.HexDir;
-import at.petrak.hexcasting.api.spell.math.HexPattern;
+import at.petrak.hexcasting.api.casting.iota.PatternIota;
+import at.petrak.hexcasting.api.casting.math.HexDir;
+import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.api.utils.NBTHelper;
 import at.petrak.hexcasting.common.items.ItemFocus;
 import at.petrak.hexcasting.common.items.ItemSpellbook;
@@ -114,13 +115,13 @@ public class HexGloopClient {
                 if(iotaNbt == null){
                     return 0xFFFFFF; //white
                 }
-                return HexIotaTypes.getColor(iotaNbt);
+                return IotaType.getColor(iotaNbt);
             }
             return 0xFFFFFF; //white
 		}, HexGloopItems.MULTI_FOCUS_ITEM.get());
 
         ColorHandlerRegistry.registerItemColors((stack, tintIndex) -> {
-            FrozenColorizer colorizer = HexGloopItems.CASTING_POTION_ITEM.get().getColorizer(stack);
+            FrozenPigment colorizer = HexGloopItems.CASTING_POTION_ITEM.get().getPigment(stack);
             if(tintIndex == 0 || tintIndex >= 5 || colorizer == null){
                 return 0xFFFFFF; //white
             }
@@ -178,7 +179,7 @@ public class HexGloopClient {
         }, HexGloopItems.ESSENCE_STONE_ITEM);
     }
 
-    public static int tintsFromColorizer(FrozenColorizer colorizer, int tintIndex, int sections){
+    public static int tintsFromColorizer(FrozenPigment colorizer, int tintIndex, int sections){
         float time = MinecraftClient.getInstance().world.getTime();
         double section = 5.0 * tintIndex;
         return colorizer.getColor(time, new Vec3d(section, 0, 0));
@@ -201,7 +202,7 @@ public class HexGloopClient {
 
         ItemPropertiesRegistry.register(HexGloopItems.CASTING_POTION_ITEM.get(), new Identifier("colorized"),
             (ItemStack itemStack, ClientWorld clientWorld, LivingEntity livingEntity, int i) -> {
-                FrozenColorizer colorizer = HexGloopItems.CASTING_POTION_ITEM.get().getColorizer(itemStack);
+                FrozenPigment colorizer = HexGloopItems.CASTING_POTION_ITEM.get().getPigment(itemStack);
                 return (colorizer == null) ? 0.0F : 1.0F;
             }
         );

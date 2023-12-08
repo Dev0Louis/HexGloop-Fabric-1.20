@@ -2,7 +2,7 @@ package com.samsthenerd.hexgloop.items;
 
 import javax.annotation.Nullable;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import net.minecraft.entity.passive.VillagerEntity;
 import net.minecraft.item.ItemStack;
 

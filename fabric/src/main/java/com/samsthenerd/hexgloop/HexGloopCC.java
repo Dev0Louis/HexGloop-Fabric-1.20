@@ -16,7 +16,7 @@ public class HexGloopCC implements ItemComponentInitializer{
                 simpleMediaProvider::getMediaAmount, simpleMediaProvider.getPriority(), stack
             ){
                 @Override
-                public int withdrawMedia(int cost, boolean simulate) {
+                public long withdrawMedia(long cost, boolean simulate) {
                     ItemSimpleMediaProvider thisItem = (ItemSimpleMediaProvider)(stack.getItem());
                     if(thisItem.shouldUseOwnWithdrawLogic(stack)){
                         return thisItem.withdrawMedia(stack, cost, simulate);

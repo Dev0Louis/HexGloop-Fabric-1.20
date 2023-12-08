@@ -10,9 +10,8 @@ import com.samsthenerd.hexgloop.misc.wnboi.LabelTypes.PatternLabel.PatternOption
 import com.samsthenerd.wnboi.utils.RenderUtils;
 
 import at.petrak.hexcasting.api.misc.MediaConstants;
-import at.petrak.hexcasting.api.spell.math.HexDir;
-import at.petrak.hexcasting.api.spell.math.HexPattern;
-import at.petrak.hexcasting.common.items.ItemFocus;
+import at.petrak.hexcasting.api.casting.math.HexDir;
+import at.petrak.hexcasting.api.casting.math.HexPattern;
 import at.petrak.hexcasting.common.items.ItemStaff;
 import dev.architectury.registry.CreativeTabRegistry;
 import dev.architectury.registry.registries.DeferredRegister;
@@ -20,15 +19,16 @@ import dev.architectury.registry.registries.RegistrySupplier;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
-import net.minecraft.util.registry.Registry;
 
 public class HexGloopItems{
-    public static DeferredRegister<Item> items = DeferredRegister.create(HexGloop.MOD_ID, Registry.ITEM_KEY);
+    public static DeferredRegister<Item> items = DeferredRegister.create(HexGloop.MOD_ID, RegistryKeys.ITEM);
 
-    public static final RegistrySupplier<Item> GLOOP_ITEM = item("gloop", 
-        () -> new ItemSimpleMediaProvider(defaultSettings(), MediaConstants.CRYSTAL_UNIT * 2, 950));
+    public static final RegistrySupplier<Item> GLOOP_ITEM = item("gloop",
+        //TODO: Maybe casting to int is bad, idc.
+        () -> new ItemSimpleMediaProvider(defaultSettings(), (int) (MediaConstants.CRYSTAL_UNIT * 2), 950));
     public static final RegistrySupplier<Item> SYNCHRONOUS_GLOOP_ITEM = item("synchronous_gloop", 
         () -> new Item(defaultSettings()));
     public static final RegistrySupplier<ItemGloopifact> GLOOPIFACT_ITEM = item("gloopifact",

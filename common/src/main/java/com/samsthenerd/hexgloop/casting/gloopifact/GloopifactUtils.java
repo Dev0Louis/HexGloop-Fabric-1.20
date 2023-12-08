@@ -7,8 +7,8 @@ import com.samsthenerd.hexgloop.casting.truenameclassaction.HexalWispWrapper;
 import com.samsthenerd.hexgloop.casting.truenameclassaction.MishapChloeIsGonnaFindSoManyWaysToBreakThisHuh;
 import com.samsthenerd.hexgloop.items.ItemGloopifact;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
-import at.petrak.hexcasting.api.spell.casting.CastingContext.CastSource;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext.CastSource;
 import dev.architectury.platform.Platform;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Pair;

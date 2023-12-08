@@ -11,7 +11,7 @@ import com.google.gson.JsonObject;
 import com.samsthenerd.hexgloop.HexGloop;
 import com.samsthenerd.hexgloop.items.IMindTargetItem;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import at.petrak.hexcasting.common.recipe.BrainsweepRecipe;
 import at.petrak.hexcasting.common.recipe.HexRecipeStuffRegistry;
 import at.petrak.hexcasting.common.recipe.ingredient.VillagerIngredient;

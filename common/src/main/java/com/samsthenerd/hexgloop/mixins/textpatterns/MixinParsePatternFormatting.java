@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.text.TextVisitFactory;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
@@ -15,9 +16,8 @@ import com.llamalad7.mixinextras.sugar.ref.LocalIntRef;
 import com.samsthenerd.hexgloop.screens.PatternStyle;
 import com.samsthenerd.hexgloop.utils.StringsToDirMap;
 
-import at.petrak.hexcasting.api.spell.math.HexDir;
-import at.petrak.hexcasting.api.spell.math.HexPattern;
-import net.minecraft.client.font.TextVisitFactory;
+import at.petrak.hexcasting.api.casting.math.HexDir;
+import at.petrak.hexcasting.api.casting.math.HexPattern;
 import net.minecraft.text.CharacterVisitor;
 import net.minecraft.text.Style;
 
@@ -30,7 +30,7 @@ public class MixinParsePatternFormatting {
     // want to mixin to start of the loop in visitFormatted
     
     @WrapOperation(method="visitFormatted(Ljava/lang/String;ILnet/minecraft/text/Style;Lnet/minecraft/text/Style;Lnet/minecraft/text/CharacterVisitor;)Z",
-    at=@At(value="INVOKE", target="net/minecraft/client/font/TextVisitFactory.visitRegularCharacter (Lnet/minecraft/text/Style;Lnet/minecraft/text/CharacterVisitor;IC)Z"))
+    at=@At(value="INVOKE", target="Lnet/minecraft/text/TextVisitFactory;visitRegularCharacter(Lnet/minecraft/text/Style;Lnet/minecraft/text/CharacterVisitor;IC)Z"))
     private static boolean parsePatternFormatting(Style style, CharacterVisitor visitor, int index, char c, Operation<Boolean> operation, @Local(ordinal=2) LocalIntRef jref, @Local(ordinal=0) String text){
         int startishIndex = jref.get(); // where we entered the loop
         String remainingText = text.substring(startishIndex);

@@ -1,7 +1,7 @@
 package com.samsthenerd.hexgloop.casting.truenameclassaction;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
-import ram.talia.hexal.api.spell.casting.IMixinCastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
+import ram.talia.hexal.api.casting.casting.IMixinCastingContext;
 
 public class HexalWispWrapper {
     public static boolean isWisp(CastingContext ctx){

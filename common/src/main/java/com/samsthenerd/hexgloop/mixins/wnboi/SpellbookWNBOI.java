@@ -1,5 +1,6 @@
 package com.samsthenerd.hexgloop.mixins.wnboi;
 
+import at.petrak.hexcasting.common.items.storage.ItemSpellbook;
 import org.spongepowered.asm.mixin.Mixin;
 
 import com.samsthenerd.hexgloop.keybinds.HexGloopKeybinds;
@@ -9,7 +10,6 @@ import com.samsthenerd.hexgloop.screens.IotaWheelScreen;
 import com.samsthenerd.wnboi.interfaces.KeyboundItem;
 import com.samsthenerd.wnboi.screen.AbstractContextWheelScreen;
 
-import at.petrak.hexcasting.common.items.ItemSpellbook;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.minecraft.client.MinecraftClient;

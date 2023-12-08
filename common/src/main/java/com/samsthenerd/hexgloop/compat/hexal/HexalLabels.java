@@ -8,14 +8,14 @@ import com.samsthenerd.hexgloop.misc.wnboi.LabelMaker.Label;
 import com.samsthenerd.hexgloop.misc.wnboi.LabelTypes.EntityLabel;
 import com.samsthenerd.hexgloop.misc.wnboi.LabelTypes.ItemLabel;
 
-import at.petrak.hexcasting.api.spell.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.Iota;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityType;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import ram.talia.hexal.api.spell.iota.EntityTypeIota;
-import ram.talia.hexal.api.spell.iota.ItemTypeIota;
-import ram.talia.hexal.api.spell.iota.MoteIota;
+import ram.talia.hexal.api.casting.iota.EntityTypeIota;
+import ram.talia.hexal.api.casting.iota.ItemTypeIota;
+import ram.talia.hexal.api.casting.iota.MoteIota;
 
 public class HexalLabels {
     public static void register(){

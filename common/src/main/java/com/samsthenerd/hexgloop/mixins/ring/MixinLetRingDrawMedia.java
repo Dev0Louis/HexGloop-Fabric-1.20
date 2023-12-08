@@ -7,9 +7,9 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.samsthenerd.hexgloop.HexGloop;
 import com.samsthenerd.hexgloop.casting.IContextHelper;
 
-import at.petrak.hexcasting.api.spell.casting.CastingContext;
-import at.petrak.hexcasting.api.spell.casting.CastingContext.CastSource;
-import at.petrak.hexcasting.api.spell.casting.CastingHarness;
+import at.petrak.hexcasting.api.casting.casting.CastingContext;
+import at.petrak.hexcasting.api.casting.casting.CastingContext.CastSource;
+import at.petrak.hexcasting.api.casting.casting.CastingHarness;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 

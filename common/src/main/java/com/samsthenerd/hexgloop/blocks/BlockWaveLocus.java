@@ -6,7 +6,8 @@ import com.samsthenerd.hexgloop.casting.wehavelociathome.ILociAtHome;
 
 import at.petrak.hexcasting.api.block.circle.BlockCircleComponent;
 import at.petrak.hexcasting.api.block.circle.BlockEntityAbstractImpetus;
-import at.petrak.hexcasting.api.spell.math.HexPattern;
+import at.petrak.hexcasting.api.casting.math.HexPattern;
+import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.state.StateManager;
@@ -20,7 +21,7 @@ public class BlockWaveLocus extends BlockCircleComponent implements ILociAtHome{
 
     public static final BooleanProperty POWERED = BooleanProperty.of("powered");
 
-    public BlockWaveLocus(Settings settings) {
+    public BlockWaveLocus(BlockBehaviour.Properties settings) {
         super(settings);
         this.setDefaultState(
             this.stateManager.getDefaultState()
