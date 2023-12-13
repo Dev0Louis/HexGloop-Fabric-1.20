@@ -10,7 +10,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 
 import net.minecraft.item.ItemStack;
 
-@Mixin(targets="at.petrak.hexcasting.common.casting.operators.spells.OpMakePackagedSpell$Spell")
+@Mixin(targets="at/petrak/hexcasting/common/casting/actions/spells/OpMakeBattery$Spell")
 public class MixinSplitCastingCost {
 
     @Shadow
@@ -19,13 +19,11 @@ public class MixinSplitCastingCost {
 
 
     @WrapOperation(
-        method="cast(Lat/petrak/hexcasting/api/spell/casting/CastingContext;)V",
-        at=@At(value="INVOKE", target="at/petrak/hexcasting/api/utils/MediaHelper.extractMedia$default (Lnet/minecraft/item/ItemStack;IZZILjava/lang/Object;)I")
+        method="cast(Lat/petrak/hexcasting/api/casting/eval/CastingEnvironment;)V",
+        at=@At(value="INVOKE", target="Lat/petrak/hexcasting/api/utils/MediaHelper;extractMedia$default(Lnet/minecraft/item/ItemStack;JZZILjava/lang/Object;)J")
     )
-    private int splitMediaCost(ItemStack mediaStack, int cost, boolean drainForBatteries, 
-        boolean godKnowsWhatIHateKotlin, int noIdeaSomeInt, Object yeahSureHaveAnObjectWhyNot,
-        Operation<Integer> original){
-        int mediaCost = original.call(mediaStack, cost, drainForBatteries, godKnowsWhatIHateKotlin, noIdeaSomeInt, yeahSureHaveAnObjectWhyNot);
+    private long splitMediaCost(ItemStack stack, long cost, boolean drainForBatteries, boolean godKnowsWhatIHateKotlin, int noIdeaSomeInt, Object yeahSureHaveAnObjectWhyNot, Operation<Long> original){
+        long mediaCost = original.call(stack, cost, drainForBatteries, godKnowsWhatIHateKotlin, noIdeaSomeInt, yeahSureHaveAnObjectWhyNot);
         int count = stack.getCount();
         return mediaCost / count;
     }

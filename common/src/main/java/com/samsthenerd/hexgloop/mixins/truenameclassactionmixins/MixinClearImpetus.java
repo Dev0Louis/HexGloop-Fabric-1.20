@@ -2,6 +2,8 @@ package com.samsthenerd.hexgloop.mixins.truenameclassactionmixins;
 
 import java.util.UUID;
 
+import at.petrak.hexcasting.api.casting.circles.BlockEntityAbstractImpetus;
+import at.petrak.hexcasting.common.blocks.circles.impetuses.BlockEntityRedstoneImpetus;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -11,8 +13,6 @@ import com.samsthenerd.hexgloop.casting.truenameclassaction.ISetImpetusKey;
 import com.samsthenerd.hexgloop.casting.truenameclassaction.MishapClearedTruename;
 import com.samsthenerd.hexgloop.misc.worldData.TruenameLockState;
 
-import at.petrak.hexcasting.api.block.circle.BlockEntityAbstractImpetus;
-import at.petrak.hexcasting.common.blocks.entity.BlockEntityStoredPlayerImpetus;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -30,20 +30,36 @@ public class MixinClearImpetus implements ISetImpetusKey {
         this.keyUuid = keyUuid;
     }
 
-    @Inject(method="castSpell()V", at=@At("HEAD"), remap = false, cancellable = true)
+    /**
+     * Code that can be used.
+     *         BlockEntityAbstractImpetus impetus = (BlockEntityAbstractImpetus)(Object)this;
+     *         // only do this check since we don't get the key uuid for other impetus types rn
+     *         if(player == null){
+     *             ServerWorld world = player.getServerWorld();
+     *             if(world == null) return;
+     *             UUID lockUuid = TruenameLockState.getServerState(world.getServer()).getLockUUID(player.getUuid());
+     *             if(lockUuid == null) return;
+     *             if(!lockUuid.equals(keyUuid)){
+     *                 // cancel the cast
+     *                 impetus.postMishap((new MishapClearedTruename(player)).makeError(Text.translatable("hexgloop.generic_circle_spell"), player));
+     *                 ci.cancel();
+     *             }
+     *         }
+     */
+    @Inject(method="startExecution", at=@At("HEAD"), remap = false, cancellable = true)
     public void CheckLockBeforeCircleCast(CallbackInfo ci){
         BlockEntityAbstractImpetus impetus = (BlockEntityAbstractImpetus)(Object)this;
         // only do this check since we don't get the key uuid for other impetus types rn
-        if(impetus instanceof BlockEntityStoredPlayerImpetus clericImpetus){
+        if(impetus instanceof BlockEntityRedstoneImpetus clericImpetus){
             PlayerEntity player = clericImpetus.getStoredPlayer();
             if(player instanceof ServerPlayerEntity sPlayer){
-                ServerWorld world = sPlayer.getWorld();
+                ServerWorld world = sPlayer.getServerWorld();
                 if(world == null) return;
                 UUID lockUuid = TruenameLockState.getServerState(world.getServer()).getLockUUID(player.getUuid());
                 if(lockUuid == null) return;
                 if(!lockUuid.equals(keyUuid)){
                     // cancel the cast
-                    impetus.setLastMishap((new MishapClearedTruename(player)).makeError(Text.translatable("hexgloop.generic_circle_spell"), player));
+                    impetus.postMishap((new MishapClearedTruename(player)).makeError(Text.translatable("hexgloop.generic_circle_spell"), player));
                     ci.cancel();
                 }
             }

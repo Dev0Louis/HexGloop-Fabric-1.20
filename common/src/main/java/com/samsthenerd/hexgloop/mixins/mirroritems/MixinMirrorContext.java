@@ -2,6 +2,8 @@ package com.samsthenerd.hexgloop.mixins.mirroritems;
 
 import javax.annotation.Nullable;
 
+import at.petrak.hexcasting.api.casting.eval.env.PackagedItemCastEnv;
+import at.petrak.hexcasting.api.casting.eval.env.PlayerBasedCastEnv;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -9,11 +11,10 @@ import org.spongepowered.asm.mixin.Shadow;
 import com.samsthenerd.hexgloop.casting.mirror.BoundMirror;
 import com.samsthenerd.hexgloop.casting.mirror.IMirrorBinder;
 
-import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 
-@Mixin(CastingContext.class)
+@Mixin(PlayerBasedCastEnv.class)
 public class MixinMirrorContext implements IMirrorBinder{
     BoundMirror tempMirror = null;
 

@@ -2,6 +2,7 @@ package com.samsthenerd.hexgloop.mixins.mirroritems;
 
 import java.util.List;
 
+import at.petrak.hexcasting.api.casting.eval.env.PlayerBasedCastEnv;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -16,7 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
 
-@Mixin(CastingContext.class)
+@Mixin(PlayerBasedCastEnv.class)
 public class MixinDirectlyOnGetHeldItem {
     @WrapOperation(method = "getHeldItemToOperateOn(Lkotlin/jvm/functions/Function1;)Lkotlin/Pair;",
     at = @At(value = "INVOKE", target="net/minecraft/server/network/ServerPlayerEntity.getStackInHand (Lnet/minecraft/util/Hand;)Lnet/minecraft/item/ItemStack;"))

@@ -27,6 +27,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtDouble;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Style;
@@ -145,7 +148,7 @@ public class ItemHandMirror extends ItemAbstractPassThrough implements IotaHolde
     // where it's stored
     public RegistryKey<World> getMirroredItemDimension(ItemStack stack){
         if(stack.getNbt() != null && stack.getNbt().contains(ITEM_DIM_TAG, NbtElement.STRING_TYPE)){
-            return RegistryKey.of(Registry.WORLD_KEY, new Identifier(stack.getNbt().getString(ITEM_DIM_TAG)));
+            return RegistryKey.of(RegistryKeys.WORLD, new Identifier(stack.getNbt().getString(ITEM_DIM_TAG)));
         }
         return null;
     }

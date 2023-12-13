@@ -2,6 +2,10 @@ package com.samsthenerd.hexgloop.mixins.mirroritems;
 
 import java.util.List;
 
+import at.petrak.hexcasting.common.casting.actions.spells.OpColorize;
+import at.petrak.hexcasting.common.casting.actions.spells.OpMakeBattery;
+import at.petrak.hexcasting.common.casting.actions.spells.OpMakePackagedSpell;
+import at.petrak.hexcasting.common.casting.actions.spells.OpRecharge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Pseudo;
 import org.spongepowered.asm.mixin.injection.At;
@@ -10,12 +14,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.samsthenerd.hexgloop.casting.mirror.SyncedItemHandling;
 
-import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import at.petrak.hexcasting.api.casting.iota.Iota;
-import at.petrak.hexcasting.common.casting.operators.spells.OpColorize;
-import at.petrak.hexcasting.common.casting.operators.spells.OpMakeBattery;
-import at.petrak.hexcasting.common.casting.operators.spells.OpMakePackagedSpell;
-import at.petrak.hexcasting.common.casting.operators.spells.OpRecharge;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Hand;
@@ -29,8 +28,8 @@ import net.minecraft.util.Hand;
 })
 public class MixinEveryInlineGetHeldItemCall {
     @WrapOperation(method = {
-        "execute(Ljava/util/List;Lat/petrak/hexcasting/api/spell/casting/CastingContext;)Ljava/util/List;",
-        "execute(Ljava/util/List;Lat/petrak/hexcasting/api/spell/casting/CastingContext;)Lkotlin/Triple;"
+        "execute",
+        "executeWithUserdata"
     },
     at = @At(value = "INVOKE", target="net/minecraft/server/network/ServerPlayerEntity.getStackInHand (Lnet/minecraft/util/Hand;)Lnet/minecraft/item/ItemStack;"))
     public ItemStack getAlternateHandStack(ServerPlayerEntity player, Hand hand, Operation<ItemStack> original, List<Iota> args, CastingContext context){
