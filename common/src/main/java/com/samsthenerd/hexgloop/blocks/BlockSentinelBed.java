@@ -1,8 +1,7 @@
 package com.samsthenerd.hexgloop.blocks;
 
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
 import com.samsthenerd.hexgloop.casting.ContextModificationHandlers.Modification;
-
-import at.petrak.hexcasting.api.casting.casting.CastingContext;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -14,10 +13,10 @@ public class BlockSentinelBed extends Block implements ICatPost{
         super(settings);
     }
 
-    public static Modification ambitModifier(CastingContext ctx, Vec3d pos, Boolean original){
+    public static Modification ambitModifier(CastingEnvironment ctx, Vec3d pos, Boolean original){
         ServerPlayerEntity caster = ctx.getCaster();
         if(!original && caster != null){
-            BlockState state = caster.getWorld().getBlockState(new BlockPos(pos));
+            BlockState state = caster.getWorld().getBlockState(BlockPos.ofFloored(pos));
             if(state.getBlock() == HexGloopBlocks.SENTINEL_BED_BLOCK.get())
                 return Modification.ENABLE;
         }

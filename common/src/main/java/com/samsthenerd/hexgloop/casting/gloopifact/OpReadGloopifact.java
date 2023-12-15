@@ -1,22 +1,22 @@
 package com.samsthenerd.hexgloop.casting.gloopifact;
 
 
-import java.util.List;
-
-import com.samsthenerd.hexgloop.casting.MishapThrowerWrapper;
-import com.samsthenerd.hexgloop.items.ItemGloopifact;
-
-import at.petrak.hexcasting.api.casting.ConstMediaAction;
-import at.petrak.hexcasting.api.casting.OperationResult;
-import at.petrak.hexcasting.api.casting.casting.CastingContext;
-import at.petrak.hexcasting.api.casting.casting.eval.SpellContinuation;
+import at.petrak.hexcasting.api.casting.castables.ConstMediaAction;
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
+import at.petrak.hexcasting.api.casting.eval.OperationResult;
+import at.petrak.hexcasting.api.casting.eval.vm.SpellContinuation;
 import at.petrak.hexcasting.api.casting.iota.BooleanIota;
 import at.petrak.hexcasting.api.casting.iota.Iota;
 import at.petrak.hexcasting.api.casting.iota.NullIota;
 import at.petrak.hexcasting.api.casting.mishaps.MishapBadOffhandItem;
+import com.samsthenerd.hexgloop.casting.MishapThrowerWrapper;
+import com.samsthenerd.hexgloop.items.ItemGloopifact;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Pair;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.List;
 
 public class OpReadGloopifact implements ConstMediaAction {
     public static List<String> expectedSources = List.of("gloopifact");
@@ -30,7 +30,7 @@ public class OpReadGloopifact implements ConstMediaAction {
     public int getArgc(){ return 0;}
 
     @Override
-    public int getMediaCost(){
+    public long getMediaCost(){
         return 0;
     }
 
@@ -49,7 +49,7 @@ public class OpReadGloopifact implements ConstMediaAction {
     }
 
     @Override
-    public List<Iota> execute(List<? extends Iota> args, CastingContext context){
+    public @NotNull List<Iota> execute(@NotNull List<? extends Iota> args, @NotNull CastingEnvironment context){
         Pair<ItemStack, ItemGloopifact> gloopifactLore = GloopifactUtils.assertGloopcasting(context);
         ItemStack castHandStack = gloopifactLore.getLeft();
         ItemGloopifact gloopifactItem = gloopifactLore.getRight();
@@ -67,7 +67,7 @@ public class OpReadGloopifact implements ConstMediaAction {
     }
 
     @Override
-    public OperationResult operate(SpellContinuation continuation, List<Iota> stack, Iota ravenmind, CastingContext castingContext){
+    public OperationResult operate(SpellContinuation continuation, List<Iota> stack, Iota ravenmind, CastingEnvironment castingContext){
         return ConstMediaAction.DefaultImpls.operate(this, continuation, stack, ravenmind, castingContext);
     }   
 }

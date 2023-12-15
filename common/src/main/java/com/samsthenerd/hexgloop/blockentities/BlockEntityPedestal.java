@@ -1,25 +1,17 @@
 package com.samsthenerd.hexgloop.blockentities;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-import java.util.UUID;
-
-import javax.annotation.Nullable;
-
+import at.petrak.hexcasting.api.addldata.ADIotaHolder;
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
+import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.iota.PatternIota;
+import at.petrak.hexcasting.api.casting.math.HexPattern;
+import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import com.samsthenerd.hexgloop.blocks.BlockPedestal;
 import com.samsthenerd.hexgloop.blocks.IDynamicFlayTarget;
 import com.samsthenerd.hexgloop.items.IMindTargetItem;
 import com.samsthenerd.hexgloop.misc.HexGloopTags;
 import com.samsthenerd.hexgloop.misc.INoMoving;
 import com.samsthenerd.hexgloop.recipes.ItemFlayingRecipe;
-
-import at.petrak.hexcasting.api.addldata.ADIotaHolder;
-import at.petrak.hexcasting.api.casting.casting.CastingContext;
-import at.petrak.hexcasting.api.casting.iota.Iota;
-import at.petrak.hexcasting.api.casting.iota.PatternIota;
-import at.petrak.hexcasting.api.casting.math.HexPattern;
-import at.petrak.hexcasting.xplat.IXplatAbstractions;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
@@ -31,8 +23,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.predicate.entity.EntityPredicates;
 import net.minecraft.server.world.ServerWorld;
@@ -44,6 +36,12 @@ import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.UUID;
 
 // switching it to sided so that it can be used by modded chutes and whatnot hopefully ?
 public class BlockEntityPedestal extends BlockEntity implements Inventory, IReallyHateForgeWhyWouldAnInventoryInterfaceNotBeAnInterfaceThatsWhatAnInterfaceIsFor, IDynamicFlayTarget {
@@ -446,7 +444,7 @@ public class BlockEntityPedestal extends BlockEntity implements Inventory, IReal
     // flaying stuff:
 
     // abstracted here so we can call it without casting context and not deal with storing the mind in the pedestal
-    public void flayHeldItem(VillagerEntity sacrifice, @Nullable CastingContext ctx){
+    public void flayHeldItem(VillagerEntity sacrifice, @Nullable CastingEnvironment ctx){
         // this deals with dynamic stuff and recipes
         World world = getWorld();
         IMindTargetItem mindTarget = ItemFlayingRecipe.getItemTarget(storedItem, sacrifice, world.getRecipeManager());
@@ -468,7 +466,7 @@ public class BlockEntityPedestal extends BlockEntity implements Inventory, IReal
         }
     }
 
-    public void absorbVillagerMind(VillagerEntity sacrifice, BlockPos flayPos, CastingContext ctx){
+    public void absorbVillagerMind(VillagerEntity sacrifice, BlockPos flayPos, CastingEnvironment ctx){
     
         if(canHeldItemAcceptMind(sacrifice, ctx)){
             flayHeldItem(sacrifice, ctx);
@@ -487,7 +485,7 @@ public class BlockEntityPedestal extends BlockEntity implements Inventory, IReal
         }
     }
     
-    public boolean canHeldItemAcceptMind(VillagerEntity sacrifice, CastingContext ctx){
+    public boolean canHeldItemAcceptMind(VillagerEntity sacrifice, CastingEnvironment ctx){
         IMindTargetItem mindTarget = ItemFlayingRecipe.getItemTarget(storedItem, sacrifice, getWorld().getRecipeManager());
         if(mindTarget != null){
             return mindTarget.canAcceptMind(sacrifice, storedItem, ctx);
@@ -496,7 +494,7 @@ public class BlockEntityPedestal extends BlockEntity implements Inventory, IReal
     }
 
     // return true if it can be accepted
-    public boolean canAcceptMind(VillagerEntity sacrifice, BlockPos flayPos, CastingContext ctx){
+    public boolean canAcceptMind(VillagerEntity sacrifice, BlockPos flayPos, CastingEnvironment ctx){
         
         if(canHeldItemAcceptMind(sacrifice, ctx)){
             return true;

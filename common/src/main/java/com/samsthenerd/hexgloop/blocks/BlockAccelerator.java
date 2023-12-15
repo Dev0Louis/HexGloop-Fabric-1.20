@@ -8,13 +8,13 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
+import at.petrak.hexcasting.api.casting.circles.BlockEntityAbstractImpetus;
 import com.samsthenerd.hexgloop.blockentities.BlockEntityPedestal;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.ILociAtHome;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.LociUtils;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.ISpeedLocus;
 
 import at.petrak.hexcasting.api.block.circle.BlockCircleComponent;
-import at.petrak.hexcasting.api.block.circle.BlockEntityAbstractImpetus;
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.api.casting.math.HexPattern;
 import net.minecraft.block.Block;
@@ -22,6 +22,7 @@ import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.item.ItemPlacementContext;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
@@ -89,10 +90,10 @@ public class BlockAccelerator extends BlockCircleComponent implements ILociAtHom
 
     // circle-y stuff
     @Override
-    public boolean canEnterFromDirection(Direction enterDir, Direction normalDir, BlockPos pos,
-        BlockState bs, World world){
+    public boolean canEnterFromDirection(Direction enterDir, BlockPos pos,
+        BlockState bs, ServerWorld world){
         var thisNormal = this.normalDir(pos, bs, world);
-        return enterDir != thisNormal && normalDir == thisNormal;
+        return enterDir != thisNormal;
     }
 
     // yoinked from BlockSlate

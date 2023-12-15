@@ -1,26 +1,16 @@
 package com.samsthenerd.hexgloop.blockentities;
 
+import at.petrak.hexcasting.api.block.circle.BlockCircleComponent;
 import com.samsthenerd.hexgloop.HexGloop;
 import com.samsthenerd.hexgloop.blocks.BlockSlateChest;
-
-import at.petrak.hexcasting.api.block.circle.BlockCircleComponent;
 import it.unimi.dsi.fastutil.floats.Float2FloatFunction;
 import it.unimi.dsi.fastutil.ints.Int2IntFunction;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.ChestBlock;
-import net.minecraft.block.DoubleBlockProperties;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.block.entity.LidOpenable;
 import net.minecraft.block.enums.ChestType;
-import net.minecraft.client.model.ModelData;
-import net.minecraft.client.model.ModelPart;
-import net.minecraft.client.model.ModelPartBuilder;
-import net.minecraft.client.model.ModelPartData;
-import net.minecraft.client.model.ModelTransform;
-import net.minecraft.client.model.TexturedModelData;
+import net.minecraft.client.model.*;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.render.VertexConsumer;
@@ -35,10 +25,10 @@ import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Matrix4f;
-import net.minecraft.util.math.Vec3f;
+import net.minecraft.util.math.RotationAxis;
 import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
+import org.joml.Matrix4f;
 
 // code just yoinked from ChestBlockEntityRenderer
 public class BERHexChest<T extends BlockEntity & LidOpenable> implements BlockEntityRenderer<T> {
@@ -113,9 +103,9 @@ public class BERHexChest<T extends BlockEntity & LidOpenable> implements BlockEn
          matrices.push();
          float f = ((Direction)blockState.get(ChestBlock.FACING)).asRotation();
          matrices.translate(0.5, 0.5, 0.5);
-         matrices.multiply(Vec3f.POSITIVE_Y.getDegreesQuaternion(-f));
+         matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(-f));
          matrices.translate(-0.5, -0.5, -0.5);
-         DoubleBlockProperties.PropertySource propertySource;
+         DoubleBlockProperties.PropertySource<? extends ChestBlockEntity> propertySource;
          if (bl) {
             propertySource = abstractChestBlock.getBlockEntitySource(blockState, world, entity.getPos(), true);
          } else {
@@ -201,7 +191,7 @@ public class BERHexChest<T extends BlockEntity & LidOpenable> implements BlockEn
                 return getChestTextureId("slate_chest");
             }
         }
-        return TexturedRenderLayers.getChestTexture(cbe, type, false);
+        return TexturedRenderLayers.getChestTextureId(cbe, type, false);
     }
 
     public SpriteIdentifier getChestTextureId(String variant){

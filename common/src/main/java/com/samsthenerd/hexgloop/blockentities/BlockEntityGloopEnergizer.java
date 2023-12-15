@@ -1,18 +1,11 @@
 package com.samsthenerd.hexgloop.blockentities;
 
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
-import javax.annotation.Nullable;
-
-import com.samsthenerd.hexgloop.blocks.BlockGloopEnergizer;
-import com.samsthenerd.hexgloop.recipes.GloopingRecipes;
-import com.samsthenerd.hexgloop.recipes.GloopingRecipes.GloopingRecipe;
-
 import at.petrak.hexcasting.api.misc.MediaConstants;
 import at.petrak.hexcasting.api.utils.MediaHelper;
 import at.petrak.hexcasting.common.lib.HexItems;
+import com.samsthenerd.hexgloop.blocks.BlockGloopEnergizer;
+import com.samsthenerd.hexgloop.recipes.GloopingRecipes;
+import com.samsthenerd.hexgloop.recipes.GloopingRecipes.GloopingRecipe;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.Entity;
@@ -21,8 +14,8 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.network.packet.s2c.play.BlockEntityUpdateS2CPacket;
 import net.minecraft.particle.ParticleEffect;
 import net.minecraft.particle.ParticleTypes;
@@ -30,6 +23,11 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 public class BlockEntityGloopEnergizer extends BlockEntity implements Inventory{
     private static final int MAX_CAPACITY = 2_000_000_000;
@@ -207,7 +205,7 @@ public class BlockEntityGloopEnergizer extends BlockEntity implements Inventory{
         if (this.media < 0) {
             return 0;
         }
-        return MediaHelper.extractMedia(stack, remainingMediaCapacity(), true, simulate);
+        return (int) MediaHelper.extractMedia(stack, remainingMediaCapacity(), true, simulate);
     }
 
     public void sync() {

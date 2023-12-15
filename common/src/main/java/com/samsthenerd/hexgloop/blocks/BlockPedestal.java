@@ -1,27 +1,15 @@
 package com.samsthenerd.hexgloop.blocks;
 
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
+import at.petrak.hexcasting.api.block.circle.BlockCircleComponent;
+import at.petrak.hexcasting.api.casting.casting.CastingHarness;
+import at.petrak.hexcasting.api.casting.eval.CastingEnvironment;
+import at.petrak.hexcasting.api.casting.iota.Iota;
+import at.petrak.hexcasting.api.casting.math.HexPattern;
 import com.samsthenerd.hexgloop.blockentities.BlockEntityPedestal;
 import com.samsthenerd.hexgloop.blockentities.HexGloopBEs;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.ILociAtHome;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.IIotaProviderLocus;
-
-import at.petrak.hexcasting.api.block.circle.BlockCircleComponent;
-import at.petrak.hexcasting.api.casting.casting.CastingContext;
-import at.petrak.hexcasting.api.casting.casting.CastingHarness;
-import at.petrak.hexcasting.api.casting.iota.Iota;
-import at.petrak.hexcasting.api.casting.math.HexPattern;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockEntityProvider;
-import net.minecraft.block.BlockRenderType;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.ShapeContext;
+import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
@@ -31,6 +19,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.NamedScreenHandlerFactory;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.BooleanProperty;
 import net.minecraft.state.property.DirectionProperty;
@@ -44,6 +33,12 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BlockPedestal extends BlockCircleComponent implements BlockEntityProvider, ILociAtHome, IIotaProviderLocus, IDynamicFlayTarget{
     public final boolean isMirror;
@@ -168,10 +163,10 @@ public class BlockPedestal extends BlockCircleComponent implements BlockEntityPr
 
     // circle-y stuff
     @Override
-    public boolean canEnterFromDirection(Direction enterDir, Direction normalDir, BlockPos pos,
-        BlockState bs, World world){
+    public boolean canEnterFromDirection(Direction enterDir, BlockPos pos,
+        BlockState bs, ServerWorld world){
         var thisNormal = this.normalDir(pos, bs, world);
-        return enterDir != thisNormal && normalDir == thisNormal;
+        return enterDir != thisNormal;
     }
 
     // yoinked from BlockSlate
@@ -204,14 +199,14 @@ public class BlockPedestal extends BlockCircleComponent implements BlockEntityPr
         return (float)BlockEntityPedestal.HEIGHT;
     }
 
-    public void absorbVillagerMind(VillagerEntity sacrifice, BlockPos flayPos, CastingContext ctx){
+    public void absorbVillagerMind(VillagerEntity sacrifice, BlockPos flayPos, CastingEnvironment ctx){
         ctx.getWorld().getBlockEntity(flayPos, HexGloopBEs.PEDESTAL_BE.get()).ifPresent((be) -> {
             ((BlockEntityPedestal)be).absorbVillagerMind(sacrifice, flayPos, ctx);
         });
     }
     
     // return true if it can be accepted
-    public boolean canAcceptMind(VillagerEntity sacrifice, BlockPos flayPos, CastingContext ctx){
+    public boolean canAcceptMind(VillagerEntity sacrifice, BlockPos flayPos, CastingEnvironment ctx){
         return ctx.getWorld().getBlockEntity(flayPos, HexGloopBEs.PEDESTAL_BE.get()).map((be) -> {
             return ((BlockEntityPedestal)be).canAcceptMind(sacrifice, flayPos, ctx);
         }).orElse(false);

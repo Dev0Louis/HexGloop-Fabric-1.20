@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
+import at.petrak.hexcasting.api.casting.circles.BlockEntityAbstractImpetus;
 import com.samsthenerd.hexgloop.blockentities.BlockEntitySlateChest;
 import com.samsthenerd.hexgloop.blockentities.HexGloopBEs;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.ILociAtHome;
@@ -125,10 +126,10 @@ public class BlockSlateChest extends BlockCircleComponent implements Waterloggab
     }
 
     @Override
-    public boolean canEnterFromDirection(Direction enterDir, Direction normalDir, BlockPos pos, BlockState bs,
-        World world) {
+    public boolean canEnterFromDirection(Direction enterDir, BlockPos pos, BlockState bs,
+        ServerWorld world) {
         var thisNormal = this.normalDir(pos, bs, world);
-        return enterDir != thisNormal && normalDir == thisNormal;
+        return enterDir != thisNormal;
     }
 
     @Override
@@ -171,7 +172,7 @@ public class BlockSlateChest extends BlockCircleComponent implements Waterloggab
 
     public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
         if ((Boolean)state.get(WATERLOGGED)) {
-            world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+            world.scheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
         }
 
         // not sure if we should have this at all ? want it to only be single though
@@ -214,7 +215,7 @@ public class BlockSlateChest extends BlockCircleComponent implements Waterloggab
 
     public BlockState getPlacementState(ItemPlacementContext ctx) {
         ChestType chestType = ChestType.SINGLE;
-        Direction direction = ctx.getPlayerFacing().getOpposite();
+        Direction direction = ctx.getHorizontalPlayerFacing().getOpposite();
         FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
         boolean bl = ctx.shouldCancelInteraction();
         Direction direction2 = ctx.getSide();

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import at.petrak.hexcasting.api.casting.circles.BlockEntityAbstractImpetus;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.IIotaProviderLocus;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.IItemProviderLocus;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.ILocusModule;
@@ -11,7 +12,6 @@ import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.IMediaProviderL
 import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.IRedirectLocus;
 import com.samsthenerd.hexgloop.casting.wehavelociathome.modules.ISpeedLocus;
 
-import at.petrak.hexcasting.api.block.circle.BlockEntityAbstractImpetus;
 import net.minecraft.util.Pair;
 import net.minecraft.util.math.BlockPos;
 
